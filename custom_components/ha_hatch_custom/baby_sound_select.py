@@ -14,6 +14,7 @@ from homeassistant.components.select import SelectEntity
 
 from .hatch_entity import HatchEntity
 
+PROMPT = "Choose a sound..."
 
 # Known app-facing names for the device's internal audio identifiers.
 FRIENDLY_TRACK_NAMES = {
@@ -83,13 +84,13 @@ class HatchBabySoundSelect(HatchEntity, SelectEntity):
 
     @property
     def options(self) -> list[str]:
-        return sorted(self._entries(), key=str.casefold)
+        return [PROMPT, *sorted(self._entries(), key=str.casefold)]
 
     @property
     def current_option(self) -> str | None:
         device = self.rest_device
         if device is None or not device.is_playing:
-            return None
+            return PROMPT
 
         entries = self._entries()
         # Preserve the underlying sound ID; a library recording can have a
@@ -104,9 +105,11 @@ class HatchBabySoundSelect(HatchEntity, SelectEntity):
             for label, (kind, value) in entries.items():
                 if kind == "catalog" and value == name:
                     return label
-        return None
+        return PROMPT
 
     def select_option(self, option: str) -> None:
+	if option == PROMPT:
+    	    return
         entry = self._entries().get(option)
         if entry is None:
             raise ValueError(f"Unknown Hatch Baby sound: {option}")
