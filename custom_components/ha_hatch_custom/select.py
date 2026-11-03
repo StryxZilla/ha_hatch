@@ -13,6 +13,7 @@ from . import HatchDataUpdateCoordinator
 from .const import DOMAIN
 from .hatch_entity import HatchEntity
 from .baby_sound_select import HatchBabySoundSelect
+from .baby_preset_select import HatchBabyPresetSelect
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -32,6 +33,12 @@ async def async_setup_entry(
         if isinstance(rest_device, RestBaby):
             entities.append(
                 HatchBabySoundSelect(
+                    coordinator=coordinator,
+                    thing_name=rest_device.thing_name,
+                )
+            )
+            entities.append(
+                HatchBabyPresetSelect(
                     coordinator=coordinator,
                     thing_name=rest_device.thing_name,
                 )
