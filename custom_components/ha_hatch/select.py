@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from hatch_rest_api import RestoreV5
+from hatch_rest_api import RestBaby, RestoreV5
 from hatch_rest_api.const import RIOT_FLAGS_CLOCK_ON
 from homeassistant.components.select import SelectEntity
 from homeassistant.config_entries import ConfigEntry
@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from . import HatchDataUpdateCoordinator
 from .const import DOMAIN
 from .hatch_entity import HatchEntity
+from .baby_sound_select import HatchBabySoundSelect
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -28,6 +29,13 @@ async def async_setup_entry(
     coordinator: HatchDataUpdateCoordinator = hass.data[DOMAIN]
     entities = []
     for rest_device in coordinator.rest_devices:
+        if isinstance(rest_device, RestBaby):
+            entities.append(
+                HatchBabySoundSelect(
+                    coordinator=coordinator,
+                    thing_name=rest_device.thing_name,
+                )
+            )
         # RestoreV4 subclasses RestoreV5, so this covers both.
         if isinstance(rest_device, RestoreV5):
             entities.append(

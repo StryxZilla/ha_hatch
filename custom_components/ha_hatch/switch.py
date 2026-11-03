@@ -48,11 +48,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
                     coordinator=coordinator, thing_name=rest_device.thing_name
                 )
             )
-            entities.append(
-                HatchPowerSwitch(
-                    coordinator=coordinator, thing_name=rest_device.thing_name
-                )
-            )
         # RestoreV4 subclasses RestoreV5, so this covers both.
         if isinstance(rest_device, RestoreV5):
             entities.append(
