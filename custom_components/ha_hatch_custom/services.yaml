@@ -3,7 +3,7 @@ set_alarm_weekdays:
   description: Set which weekdays a Hatch alarm repeats on. Use an empty weekday list for a one-time alarm.
   target:
     entity:
-      integration: ha_hatch
+      integration: ha_hatch_custom
       domain: switch
   fields:
     weekdays:

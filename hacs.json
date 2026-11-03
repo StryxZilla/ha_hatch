@@ -1,7 +1,9 @@
 {
-  "name": "Hatch Baby Custom",
-  "render_readme": true,
-  "content_in_root": false,
-  "country": ["US"],
-  "homeassistant": "2021.10.0b0"
+    "name":  "Hatch Baby Custom (Experimental)",
+    "render_readme":  true,
+    "content_in_root":  false,
+    "country":  [
+                    "US"
+                ],
+    "homeassistant":  "2021.10.0b0"
 }

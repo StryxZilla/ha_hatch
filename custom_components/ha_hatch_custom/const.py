@@ -1,7 +1,7 @@
 # Configuration Constants
 from homeassistant.const import Platform
 
-DOMAIN: str = "ha_hatch"
+DOMAIN: str = "ha_hatch_custom"
 
 # Integration Setting Constants
 CONFIG_FLOW_VERSION: int = 2

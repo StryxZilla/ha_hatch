@@ -15,7 +15,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from custom_components.ha_hatch import DOMAIN
+from custom_components.ha_hatch_custom import DOMAIN
 
 _LOGGER: Logger = getLogger(__name__)
 

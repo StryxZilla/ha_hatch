@@ -18,7 +18,7 @@ class HatchEntity(CoordinatorEntity[HatchDataUpdateCoordinator]):
         self._attr_unique_id = (
             f"{thing_name}_{entity_type.lower().replace(' ', '_')}"
         )
-        self._attr_name = f"{self.rest_device.device_name} {entity_type}"
+        self._attr_name = f"{self.rest_device.device_name} Custom {entity_type}"
         connections = {
             (
                 dr.CONNECTION_NETWORK_MAC,
@@ -34,7 +34,7 @@ class HatchEntity(CoordinatorEntity[HatchDataUpdateCoordinator]):
             identifiers={(DOMAIN, thing_name)},
             manufacturer="Hatch",
             model=self.rest_device.__class__.__name__,
-            name=self.rest_device.device_name,
+            name=f"{self.rest_device.device_name} (Custom)",
             sw_version=self.rest_device.firmware_version,
         )
 
