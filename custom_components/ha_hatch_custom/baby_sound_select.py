@@ -107,12 +107,14 @@ class HatchBabySoundSelect(HatchEntity, SelectEntity):
                     return label
         return PROMPT
 
-    def select_option(self, option: str) -> None:
-	if option == PROMPT:
-    	    return
+        def select_option(self, option: str) -> None:
+        if option == PROMPT:
+            return
+
         entry = self._entries().get(option)
         if entry is None:
             raise ValueError(f"Unknown Hatch Baby sound: {option}")
+
         kind, value = entry
         if kind == "track":
             self.rest_device.set_audio_track(value)
