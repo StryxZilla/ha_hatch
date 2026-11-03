@@ -72,7 +72,7 @@ class HatchBabySoundSelect(HatchEntity, SelectEntity):
                 label = f"{label} (built-in {track.name})"
             entries[label] = ("track", track)
 
-        sounds = getattr(self.rest_device, "sounds_by_name", {}) or {}
+        sounds = {}  # Hide unverified generic catalog sounds
         for raw_name in sounds:
             label = str(raw_name)
             if label in entries:
